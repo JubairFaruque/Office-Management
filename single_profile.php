@@ -2,6 +2,7 @@
 
 <?php
 include 'connection.php';
+session_start();
 ?>
 <html lang="en">
 
@@ -45,7 +46,7 @@ include 'connection.php';
 <body>
 
   <!-- ======= Header ======= -->
-  <header id="header" class="header fixed-top d-flex align-items-center">
+<header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
       <a href="index.html" class="logo d-flex align-items-center">
@@ -62,34 +63,19 @@ include 'connection.php';
     <nav class="header-nav ms-auto">
       <ul class="d-flex align-items-center">
 
-        <li class="nav-item d-block d-lg-none">
-          <a class="nav-link nav-icon search-bar-toggle " href="#">
-            <i class="bi bi-search"></i>
-          </a>
-        </li><!-- End Search Icon-->
-
-        <!--<li class="nav-item dropdown">
-		
-          </ul><!-- End Notification Dropdown Items -->
+        <li class="nav-item dropdown">
 
         </li><!-- End Notification Nav -->
 
-        <!--<li class="nav-item dropdown">
-		
-            </li>-->
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <!--<li class="dropdown-footer">
-              <a href="#">Show all messages</a>
-            </li>
-
-          </ul><!-- End Messages Dropdown Items -->
+        <li class="nav-item dropdown">
 
         </li><!-- End Messages Nav -->
 
-        <!--<li class="nav-item dropdown pe-3">
+        <li class="nav-item dropdown pe-3">	
+			<div class="col-12">
+				<!--<button class="btn btn-primary w-100" type="submit" name="logout"></button>-->
+				<a href="logout.php">Log Out</a>
+       		</div>
         </li><!-- End Profile Nav -->
 
       </ul>
@@ -101,57 +87,7 @@ include 'connection.php';
   <aside id="sidebar" class="sidebar">
 
     <ul class="sidebar-nav" id="sidebar-nav">
-
-      <li class="nav-heading">Pages</li>
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-menu-button-wide"></i><span>Profile</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="account_display.php">
-              <i class="bi bi-circle"></i><span>See Profiles</span>
-            </a>
-          </li>
-          <li>
-            <a href="account.php">
-              <i class="bi bi-circle"></i><span>Create Profile</span>
-            </a>
-          </li>
-        </ul>
-      </li><!-- End Profile Page Nav -->
-
-      <!--<li class="nav-item">
-      </li><!-- End Contact Page Nav -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="register.php">
-          <i class="bi bi-card-list"></i>
-          <span>Register</span>
-        </a>
-      </li><!-- End Register Page Nav -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="login.php">
-          <i class="bi bi-box-arrow-in-right"></i>
-          <span>Login</span>
-        </a>
-      </li><!-- End Login Page Nav -->
-	  <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-login.html">
-          <i class="bi bi-box-arrow-in-right"></i>
-          <span>Notice Box</span>
-        </a>
-      </li><!--
-      <!--<li class="nav-item">
-        
-      </li><!-- End Error 404 Page Nav -->
-
-      <!--<li class="nav-item">
-     
-      </li><!-- End Blank Page Nav -->
-
+		<br><br><br><br><br><br><br><br><br><p><h4><b>Welcome</b></h4><h3><b>"<?php echo $_SESSION['username']; ?>"</b></h3><h4><b>To Your Profile.</b></h4></p>
     </ul>
 
   </aside><!-- End Sidebar-->
@@ -161,6 +97,7 @@ include 'connection.php';
     <div class="pagetitle">
       
         <!--<br><br><br><br><br><br><br><br><br><center><p align="center"><h1><b style="color: red">Welcome To</b><br>Department of Computer Science and Mathematics<br>Faculty of Agricultural Engineering And Technology <br> Bangladesh Agricultural University, Mymensingh</h1></p></center><br><br><br><br><br><br><br><br>-->
+		<br><br><br><br><br><br>
 		<table class="table">
 			<thead>
 				<tr>
@@ -176,7 +113,8 @@ include 'connection.php';
 			<tbody>
 	
             <?php
-			
+			if(isset($_GET['name'])){
+			$name=$_GET['name'];
 			$sql="Select * from profile where Name LIKE '%$name%'" ;
 			$result=mysqli_query($con,$sql);
 			if ($result)
@@ -203,13 +141,13 @@ include 'connection.php';
 					</td>
 				</tr>';
 				}
+			 }
 			}
-			
 			?>
 				
 			</tbody>
 		</table>
-
+	<br><br><br><br><br>
 	</div>
 
   </main><!-- End #main -->
