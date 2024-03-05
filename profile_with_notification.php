@@ -115,11 +115,11 @@ session_start();
             <?php
 				 if(isset($_GET['name'])){
 				 $name=$_GET['name'];
-				 $sql="Select * from profile where Name LIKE '%$name%'" ;
-                 $sql = "SELECT profile.Office_ID, profile.Name, profile.Designation, profile.Mobile, profile.Email, profile.Address, profile.Joining_Date,notice_box.Notice
+				 $sql1="Select * from profile where Name LIKE '%$name%'" ;
+                 $sql2= "SELECT profile.Office_ID, profile.Name, profile.Designation, profile.Mobile, profile.Email, profile.Address, profile.Joining_Date,notice_box.Notice
 				 FROM profile
-				 LEFT JOIN notice_box ON profile.Name= notice_box.Notice_To";
-                 $result = mysqli_query($con, $sql);
+				 LEFT JOIN notice_box ON profile.$name= notice_box.Notice_To";
+                 $result = mysqli_query($con, $sql1,$sql2);
 
 				if ($result) {
 					while ($row = mysqli_fetch_array($result)) {
